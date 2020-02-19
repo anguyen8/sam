@@ -1,0 +1,14 @@
+bird 
+turtle 
+lizard 
+spider 
+crab 
+dog 
+cat 
+big cat 
+beetle 
+butterfly 
+monkey 
+fish 
+fruit 
+fungus
