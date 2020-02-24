@@ -1,1 +1,0 @@
-/home/naman/CS231n/heatmap_tests/images/ILSVRC2012_img_val/ILSVRC2012_val_00028460.JPEG
