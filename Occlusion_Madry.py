@@ -213,9 +213,9 @@ if __name__ == '__main__':
 
     ############################
     model_names = []
-    # model_names.append('pytorch')
-    # model_names.append('googlenet')
-    # model_names.append('madry') #Robust_ResNet
+    model_names.append('pytorch')
+    model_names.append('googlenet')
+    model_names.append('madry') #Robust_ResNet
     model_names.append('madry_googlenet')  # Robust GoogleNet
 
     print(f'Model is {model_names}')

@@ -4,31 +4,53 @@
 # Naman Bansal <bnaman50@gmail.com>
 # 2020
 
+## Gradient ##
 # Arguments
 img_path='./Images/'
 batch_size=1
 add_noise=0
-output_path='./results/Grad'
+output_path='./results'
 
-# Gradient
+# Code
 CUDA_VISIBLE_DEVICES=0 python Gradient_Madry.py -idp  ${img_path} -bs ${batch_size} -if_n ${add_noise} -op ${output_path}
 
-# Save figure
-# python formal_plot_figure.py --result_path ${save_path}/${algo_1} --dataset ${dataset} --save_path ${save_path}/${algo_1} --algo ${algo_1}
+## LIME ##
+# Arguments
+l_bp=0
+num_superpixel=50
+l_es=0
 
-# convert ${save_path}/${algo_1}/figure_${algo_1}.jpg -trim ${save_path}/${algo_1}/figure_${algo_1}.jpg
+# Code
+CUDA_VISIBLE_DEVICES=0 python LIME_Madry.py -idp ${img_path} -op ${output_path} -l_bp ${l_bp} -l_sn ${num_superpixel} -l_es ${l_es}
 
-# MP-G
-# algo_2='MPG'
-# perturb_binary_2=1
+## Meaningful Perturbation ##
+# Arguments
+num_seed=0
+init_mask='circular'
+mask_size=224
+save_evolution_mask=0
+save_plot=0
+save_npy=1
+num_iter=300
 
-# CUDA_VISIBLE_DEVICES=0 python formal_MP_single_image.py --img_path ${img_path} --true_class ${true_class} --dataset ${dataset} --weight_file ${weight_file} --save_path ${save_path} --algo ${algo_2} --perturb_binary ${perturb_binary_2}
+# Code
+CUDA_VISIBLE_DEVICES=0 python MP_MADRY.py --seed ${num_seed} --img_dir_path ${img_path} --out_path ${output_path} --mask_init ${init_mask} --mask_init_size ${mask_size} --if_save_mask_evolution ${save_evolution_mask} --if_save_plot ${save_plot} --if_save_npy ${save_npy} --num_iter ${num_iter}
 
-# Save figure
-# python formal_plot_figure.py --result_path ${save_path}/${algo_2} --dataset ${dataset} --save_path ${save_path}/${algo_2} --algo ${algo_2}
 
-# convert ${save_path}/${algo_2}/figure_${algo_2}.jpg -trim ${save_path}/${algo_2}/figure_${algo_2}.jpg
+## Smooth Gradient ##
+# Arguments
+add_noise=0
+index_flag=0
+num_samples=50
+std_dev=0.3
 
-# Displaying figure
-# montage -quiet ${save_path}/${algo_1}/figure_${algo_1}.jpg ${save_path}/${algo_2}/figure_${algo_2}.jpg -tile 1x -geometry +2+2 ${save_path}/test_MP.jpg
-# imgcat ${save_path}/test_MP.jpg
+# Code
+CUDA_VISIBLE_DEVICES=0 python SmoothGrad_Madry.py -idp ${img_path}  -if_n ${add_noise} --idx_flag ${index_flag} -op ${output_path} -n_sam ${num_samples} -std ${std_dev}
+
+## Sliding-Patch ##
+# Arguments
+num_seed=0
+patch_size=53
+
+# Code
+python Occlusion_Madry.py -np_s ${num_seed} -idp ${img_path}  -op ${output_path}  -ops ${patch_size}
