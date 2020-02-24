@@ -14,11 +14,18 @@ img_path='./Images/'
 output_path='./results'
 
 # Code
+<<<<<<< HEAD
 for lime_explainer_seed in 1 2 3 
 do
     CUDA_VISIBLE_DEVICES=0 python LIME_Madry.py -idp ${img_path} -op ${output_path} -l_bp ${l_bp} -l_sn ${num_superpixel} -l_es ${lime_explainer_seed}
 done
 
+=======
+for i in 1 2 3 4 5
+do
+    CUDA_VISIBLE_DEVICES=0 python LIME_Madry.py -idp ${img_path} -op ${output_path} -l_bp ${l_bp} -l_sn ${num_superpixel} -l_es ${l_es}
+done
+>>>>>>> b392a8eadf037441b61339545afd7e68a70b568d
 
 ## Meaningful Perturbation ##
 # Arguments
