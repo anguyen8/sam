@@ -538,9 +538,9 @@ if __name__ == '__main__':
 
     model_names = []
     model_names.append('pytorch')
-    # model_names.append('googlenet')
+    model_names.append('googlenet')
     model_names.append('madry') #Robust_ResNet
-    # model_names.append('madry_googlenet') #Robust GoogleNet
+    model_names.append('madry_googlenet') #Robust GoogleNet
 
     print(model_names)
 
@@ -597,8 +597,6 @@ if __name__ == '__main__':
     #     orig_mask = create_random_maks(mask_size, args.mask_init)
 
     for idx, model_name in enumerate(model_names):
-        ipdb.set_trace()
-
         print(f'\n\nAnalyzing for model: {model_name}')
         load_model = load_model_fns[model_name]
         model_arg = load_model_args[model_name]
@@ -773,7 +771,6 @@ if __name__ == '__main__':
 
             print('Done')
             ## End of Optimization
-            ipdb.set_trace()
             ################################################
             if i == max_iterations - 1:
                 final_max_prob, final_max_ind = outputs.max(dim=1)
