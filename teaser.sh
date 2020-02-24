@@ -14,7 +14,10 @@ img_path='./Images/'
 output_path='./results'
 
 # Code
-CUDA_VISIBLE_DEVICES=0 python LIME_Madry.py -idp ${img_path} -op ${output_path} -l_bp ${l_bp} -l_sn ${num_superpixel} -l_es ${l_es}
+for i in 1 2 3 4 5
+do
+    CUDA_VISIBLE_DEVICES=0 python LIME_Madry.py -idp ${img_path} -op ${output_path} -l_bp ${l_bp} -l_sn ${num_superpixel} -l_es ${l_es}
+done
 
 ## Meaningful Perturbation ##
 # Arguments
