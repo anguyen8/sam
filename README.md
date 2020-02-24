@@ -22,5 +22,5 @@ This repository is built using PyTorch. You can install the necessary libraries 
 ## 2. Licenses
 Note that the code in this repository is licensed under MIT License, but, the pre-trained condition models used by the code have their own licenses. Please carefully check them before use. 
 
-## 5. Questions?
+## 3. Questions?
 If you have questions/suggestions, please feel free to [email](mailto:chiragagarwall12@gmail.com) or create github issues.
