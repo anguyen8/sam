@@ -4,21 +4,14 @@
 # Naman Bansal <bnaman50@gmail.com>
 # 2020
 
-## Gradient ##
-# Arguments
-img_path='./Images/'
-batch_size=1
-add_noise=0
-output_path='./results'
-
-# Code
-CUDA_VISIBLE_DEVICES=0 python Gradient_Madry.py -idp  ${img_path} -bs ${batch_size} -if_n ${add_noise} -op ${output_path}
 
 ## LIME ##
 # Arguments
 l_bp=0
 num_superpixel=50
 l_es=0
+img_path='./Images/'
+output_path='./results'
 
 # Code
 CUDA_VISIBLE_DEVICES=0 python LIME_Madry.py -idp ${img_path} -op ${output_path} -l_bp ${l_bp} -l_sn ${num_superpixel} -l_es ${l_es}
