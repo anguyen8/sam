@@ -153,10 +153,10 @@ if __name__ == '__main__':
 
     ############################
     model_names = []
-    model_names.append('madry')
-    model_names.append('pytorch')
-    # model_names.append('googlenet') #Robust_ResNet
-    # model_names.append('madry_googlenet')  # Robust GoogleNet
+    model_names.append('madry') # ResNet-R
+    model_names.append('pytorch') # ResNet
+    model_names.append('googlenet') #GoogleNet
+    model_names.append('madry_googlenet')  #GoogleNet-R
 
 
     data_loader_dict = {'pytorch': pytorch_data_loader,

@@ -290,11 +290,13 @@ if __name__ == '__main__':
     madry_model = eutils.load_madry_model(if_pre=args.if_pre)
     pytorch_model = eutils.load_orig_imagenet_model(arch='resnet50', if_pre=args.if_pre)
     gNet_model = eutils.load_orig_imagenet_model(arch='googlenet', if_pre=args.if_pre)
+    gNet_R_model = eutils.load_madry_model(arch='madry_googlenet', if_pre=args.if_pre)
 
     ## #Explainer
     madry_explainer = lime_image.LimeImageExplainer(random_state=args.lime_explainer_seed)
     pytorch_explainer = lime_image.LimeImageExplainer(random_state=args.lime_explainer_seed)
     gNet_explainer = lime_image.LimeImageExplainer(random_state=args.lime_explainer_seed)
+    gNet_R_explainer = lime_image.LimeImageExplainer(random_state=args.lime_explainer_seed)
 
     ## #Super-pixel algo
     slic_parameters = {'n_segments': args.lime_superpixel_num,
@@ -345,6 +347,19 @@ if __name__ == '__main__':
             probs = madry_model(batch)
         return probs.data.cpu().numpy()
 
+    # GoogleNet-R
+    gNet_R_preprocess_transform = get_madry_preprocess_transform()
+    def gNet_R_batch_predict(images):
+        gNet_R_model.eval()
+        batch = torch.stack(tuple(gNet_R_preprocess_transform(i) for i in images), dim=0)
+        batch = batch.cuda()
+        if args.if_pre == 1:
+            logits = gNet_R_model(batch)
+            probs = F.softmax(logits, dim=1)
+        else:
+            probs = gNet_R_model(batch)
+        return probs.data.cpu().numpy()
+
     #########################################################
     #data
     data_loader, img_count = load_data(args.img_dir_path, batch_size=1, img_idxs=[args.start_idx, args.end_idx],
@@ -355,7 +370,7 @@ if __name__ == '__main__':
     # pytorch_correct  = 0
     # gNet_correct = 0
 
-    batch_size = 750
+    batch_size = 100
     print(f'Out path is {args.out_path}')
     for i, (madry_img, pytorch_img, targ_class, img_path) in enumerate(data_loader):
 
@@ -377,6 +392,7 @@ if __name__ == '__main__':
             madry_img = madry_img.cuda()
 
         gNet_img = pytorch_img.clone() #Since their preprocessing is all the same
+        gNet_R_img = madry_img.clone()  # Since their preprocessing is all the same
         targ_class = targ_class.cpu()
 
         #Prob
@@ -393,6 +409,10 @@ if __name__ == '__main__':
             madry_logits = madry_model(madry_img)
             madry_probs = F.softmax(madry_logits, dim=1).cpu()
             madry_logits = madry_logits .cpu()
+
+            gNet_R_logits = gNet_R_model(gNet_R_img)
+            gNet_R_probs = F.softmax(gNet_R_logits, dim=1).cpu()
+            gNet_R_logits = gNet_R_logits.cpu()
             softmax = 'pre'
 
         else:
@@ -400,11 +420,13 @@ if __name__ == '__main__':
             pytorch_probs = pytorch_model(pytorch_img).cpu()
             gNet_probs = gNet_model(gNet_img).cpu()
             madry_probs = madry_model(madry_img).cpu()
+            gNet_R_probs = gNet_R_model(gNet_R_img).cpu()
             softmax = 'post'
 
         madry_prediction = torch.argmax(madry_probs, dim=-1).cpu().item()
         pytorch_prediction = torch.argmax(pytorch_probs, dim=-1).cpu().item()
         gNet_prediction = torch.argmax(gNet_probs, dim=-1).cpu().item()
+        gNet_R_prediction = torch.argmax(gNet_R_probs, dim=-1).cpu().item()
         true_class = targ_class.cpu().item()
         # if madry_prediction == true_class:
         #     madry_correct += 1
@@ -487,6 +509,27 @@ if __name__ == '__main__':
         for i, (seg_idx, seg_val) in enumerate(exp):
             gNet_heatmap[gNet_segments == seg_idx] = seg_val
 
+        ## GoogleNet-R
+        print(f'Explaining GoogleNet model')
+        gNet_R_lime_explanation = gNet_R_explainer.explain_instance(lime_img,
+                                                                    gNet_R_batch_predict,
+                                                                    batch_size=batch_size,
+                                                                    segmentation_fn=segmenter,
+                                                                    top_labels=None,  # 1000,
+                                                                    labels=(true_class,),
+                                                                    hide_color=args.lime_background_pixel,
+                                                                    num_samples=args.lime_num_samples,
+                                                                    )
+        gNet_R_segments = gNet_R_lime_explanation.segments
+        gNet_R_heatmap = np.zeros(gNet_R_segments.shape)
+        local_exp = gNet_R_lime_explanation.local_exp
+        exp = local_exp[true_class]
+
+        for i, (seg_idx, seg_val) in enumerate(exp):
+            gNet_R_heatmap[gNet_R_segments == seg_idx] = seg_val
+
+
+
         # ipdb.set_trace()
         # np.save(os.path.join(args.out_path, 'madry_heatmap.npy'), madry_heatmap)
         # np.save(os.path.join(args.out_path, 'pytorch_heatmap.npy'), pytorch_heatmap)
@@ -521,6 +564,8 @@ if __name__ == '__main__':
             np.save(os.path.join(out_dir, f'time_{f_time}_heatmaps_{img_name}_{par_name}_googlenet.npy'), gNet_heatmap)
             np.save(os.path.join(out_dir, f'time_{f_time}_heatmaps_{img_name}_{par_name}_pytorch.npy'), pytorch_heatmap)
             np.save(os.path.join(out_dir, f'time_{f_time}_heatmaps_{img_name}_{par_name}_madry.npy'), madry_heatmap)
+            np.save(os.path.join(out_dir, f'time_{f_time}_heatmaps_{img_name}_{par_name}_madry_googlenet.npy'),
+                    gNet_R_heatmap)
 
 
 

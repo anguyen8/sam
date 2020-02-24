@@ -174,6 +174,8 @@ class AttackerModel(ch.nn.Module):
 
         return output #(output, inp)
 
+
+## This taken in the standard PyTorch input (No need to normalize like Madry)
 class MyAttackerModel(ch.nn.Module):
     def __init__(self, model, dataset):
         super(MyAttackerModel, self).__init__()
