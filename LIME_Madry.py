@@ -561,10 +561,16 @@ if __name__ == '__main__':
         print(f'Img name is {img_name}')
 
         if args.if_save_npy == 1:
-            np.save(os.path.join(out_dir, f'time_{f_time}_heatmaps_{img_name}_{par_name}_googlenet.npy'), gNet_heatmap)
-            np.save(os.path.join(out_dir, f'time_{f_time}_heatmaps_{img_name}_{par_name}_pytorch.npy'), pytorch_heatmap)
-            np.save(os.path.join(out_dir, f'time_{f_time}_heatmaps_{img_name}_{par_name}_madry.npy'), madry_heatmap)
-            np.save(os.path.join(out_dir, f'time_{f_time}_heatmaps_{img_name}_{par_name}_madry_googlenet.npy'),
+            # np.save(os.path.join(out_dir, f'time_{f_time}_heatmaps_{img_name}_{par_name}_googlenet.npy'), gNet_heatmap)
+            # np.save(os.path.join(out_dir, f'time_{f_time}_heatmaps_{img_name}_{par_name}_pytorch.npy'), pytorch_heatmap)
+            # np.save(os.path.join(out_dir, f'time_{f_time}_heatmaps_{img_name}_{par_name}_madry.npy'), madry_heatmap)
+            # np.save(os.path.join(out_dir, f'time_{f_time}_heatmaps_{img_name}_{par_name}_madry_googlenet.npy'),
+            #         gNet_R_heatmap)
+
+            np.save(os.path.join(out_dir, f'lime_{par_name}_model_name_googlenet.npy'), gNet_heatmap)
+            np.save(os.path.join(out_dir, f'lime_{par_name}_model_name_pytorch.npy'), pytorch_heatmap)
+            np.save(os.path.join(out_dir, f'lime_{par_name}_model_name_madry.npy'), madry_heatmap)
+            np.save(os.path.join(out_dir, f'lime_{par_name}_model_name_madry_googlenet.npy'),
                     gNet_R_heatmap)
 
 

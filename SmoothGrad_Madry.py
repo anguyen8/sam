@@ -236,7 +236,8 @@ if __name__ == '__main__':
 
             ## Creating the save path
             img_name = img_path[0].split('/')[-1].split('.')[0]
-            out_dir = os.path.join(args.out_path, f'SmoothGrad_{model_name}/{img_name}')
+            # out_dir = os.path.join(args.out_path, f'SmoothGrad_{model_name}/{img_name}')
+            out_dir = os.path.join(args.out_path, f'{img_name}')
             eutils.mkdir_p(out_dir)
             print(f'Saving results in {out_dir}')
 
@@ -293,9 +294,13 @@ if __name__ == '__main__':
 
                 if args.if_save_npy == 1:
                     np.save(os.path.join(out_dir,
-                                         f'time_{f_time}_{img_name}_prob_{pred_prob:.3f}_'
-                                         f'heatmaps_num_samples_{samples}_{par_name}.npy'),
+                                         f'sg_prob_{pred_prob:.3f}_'
+                                         f'num_samples_{samples}_{par_name}_model_name_{model_name}.npy'),
                             grad)
+                    # np.save(os.path.join(out_dir,
+                    #                      f'time_{f_time}_{img_name}_prob_{pred_prob:.3f}_'
+                    #                      f'heatmaps_num_samples_{samples}_{par_name}.npy'),
+                    #         grad)
 
                 ## Only saving the Madry results
                 if args.if_save_plot == 1:
