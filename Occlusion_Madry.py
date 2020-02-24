@@ -300,11 +300,15 @@ if __name__ == '__main__':
                 print(f'Heatmap shape is {heatmap.shape}')
 
                 if args.if_save_npy == 1:
-                    np.save(os.path.join(out_dir, f'time_{f_time}_heatmap_'
-                                                  f'img_name_{img_name}_'
+                    np.save(os.path.join(out_dir, f'occlusion_'
                                                   f'{par_name}_model_name_'
                                                   f'{model_name}.npy'),
                             heatmap)
+                    # np.save(os.path.join(out_dir, f'time_{f_time}_heatmap_'
+                    #                               f'img_name_{img_name}_'
+                    #                               f'{par_name}_model_name_'
+                    #                               f'{model_name}.npy'),
+                    #         heatmap)
 
             print(f'Batch time is {time.time() - batch_time}\n')
     #######################

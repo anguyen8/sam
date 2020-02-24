@@ -787,11 +787,17 @@ if __name__ == '__main__':
 
             if args.if_save_npy == 1:
                 npy_path = os.path.join(save_path,
-                                        f"t_{f_time}_imN_{int(img_name.split('_')[-1]):05d}_"
-                                        f"FTP_{final_pred_prob:.3f}_" #FTP - final_true_prob
-                                        f"FMP_{final_max_prob.item():.3f}_" #FMP - final_max_prob
-                                        f"FMInd_{final_max_ind.item():3d}_{par_name}_" # FMInd - final_max_ind
-                                        f"{model_name}.npy")
+                                        f"mp_imN_{int(img_name.split('_')[-1]):05d}_"
+                                        f"FTP_{final_pred_prob:.3f}_"  # FTP - final_true_prob
+                                        f"FMP_{final_max_prob.item():.3f}_"  # FMP - final_max_prob
+                                        f"FMInd_{final_max_ind.item():3d}_{par_name}_"  # FMInd - final_max_ind
+                                        f"model_name_{model_name}.npy")
+                # npy_path = os.path.join(save_path,
+                #                         f"t_{f_time}_imN_{int(img_name.split('_')[-1]):05d}_"
+                #                         f"FTP_{final_pred_prob:.3f}_" #FTP - final_true_prob
+                #                         f"FMP_{final_max_prob.item():.3f}_" #FMP - final_max_prob
+                #                         f"FMInd_{final_max_ind.item():3d}_{par_name}_" # FMInd - final_max_ind
+                #                         f"{model_name}.npy")
                 np.save(npy_path, mask)
 
             assert mask.shape[0] == img_shape
