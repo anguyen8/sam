@@ -45,7 +45,7 @@ num_samples=50
 std_dev=0.3
 
 # Code
-for num_samples in 50 200 800
+for num_samples in 25 50 75
 do
     CUDA_VISIBLE_DEVICES=0 python SmoothGrad_Madry.py -idp ${img_path}  -if_n ${add_noise} --idx_flag ${index_flag} -op ${output_path} -n_sam ${num_samples} -std ${std_dev}
 done
@@ -61,3 +61,23 @@ for patch_size in 5 29 53
 do
     CUDA_VISIBLE_DEVICES=0 python Occlusion_Madry.py -np_s ${num_seed} -idp ${img_path}  -op ${output_path}  -ops ${patch_size}
 done
+
+## Plotting teaser image ## 
+algo='sg'
+python formal_plot_teaser.py --algo ${algo} --save_path ${output_path}
+convert ${output_path}/figure_${algo}.jpg -trim ${output_path}/figure_${algo}.jpg
+
+algo='occlusion'
+python formal_plot_teaser.py --algo ${algo} --save_path ${output_path}
+convert ${output_path}/figure_${algo}.jpg -trim ${output_path}/figure_${algo}.jpg
+
+algo='lime'
+python formal_plot_teaser.py --algo ${algo} --save_path ${output_path}
+convert ${output_path}/figure_${algo}.jpg -trim ${output_path}/figure_${algo}.jpg
+
+algo='mp'
+python formal_plot_teaser.py --algo ${algo} --save_path ${output_path}
+convert ${output_path}/figure_${algo}.jpg -trim ${output_path}/figure_${algo}.jpg
+
+montage ${output_path}/figure_sg.jpg ${output_path}/figure_occlusion.jpg ${output_path}/figure_lime.jpg ${output_path}/figure_mp.jpg -tile 1x -geometry +0+0 ${output_path}/formal_teaser.jpg
+imgcat ${output_path}/formal_teaser.jpg

@@ -621,7 +621,7 @@ def zero_out_plot_multiple_patch_chirag_text(grid,
 
                 else:
                     # im = ax.imshow(o_img, interpolation='none', cmap=cMap, vmin=-1, vmax=1)
-                    im = ax.imshow(img_data, interpolation='none', cmap=cMap, vmin=-1, vmax=1)
+                    im = ax.imshow(img_data, interpolation='none', cmap=cMap)  # , vmin=-1, vmax=1)
                     ax.spines['top'].set_visible(False)
                     ax.spines['right'].set_visible(False)
                     ax.spines['bottom'].set_visible(False)
@@ -677,9 +677,9 @@ def zero_out_plot_multiple_patch_chirag_text(grid,
                     cbar.outline.set_visible(False)
                     cbar.ax.tick_params(labelsize=5, width=0.2, length=1.2, direction='inout', pad=0.5)
                     tt = 1
-                    cbar.set_ticks([])
+                    # cbar.set_ticks([])
                     cbar.set_ticks([-tt, zero, tt])
-                    cbar.set_ticklabels([-1, zero, 1])
+                    # cbar.set_ticklabels([-1, zero, 1])
     if save:
         dir_path = folderName
         print(f'Saving figure to {os.path.join(dir_path, file_name)}')
