@@ -79,5 +79,8 @@ algo='mp'
 python formal_plot_teaser.py --algo ${algo} --save_path ${output_path}
 convert ${output_path}/figure_${algo}.jpg -trim ${output_path}/figure_${algo}.jpg
 
-montage ${output_path}/figure_sg.jpg ${output_path}/figure_occlusion.jpg ${output_path}/figure_lime.jpg ${output_path}/figure_mp.jpg -tile 1x -geometry +0+0 ${output_path}/formal_teaser.jpg
+montage ${output_path}/figure_lime.jpg ${output_path}/figure_occlusion.jpg ${output_path}/figure_mp.jpg ${output_path}/figure_sg.jpg -tile 1x -geometry +0+0 ${output_path}/formal_teaser.jpg
+
+# Display teaser image
+echo 'Teaser path: '${output_path}'/formal_teaser.jpg'
 imgcat ${output_path}/formal_teaser.jpg
