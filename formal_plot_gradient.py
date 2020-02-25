@@ -17,14 +17,14 @@ if __name__ == '__main__':
     # Hyper parameters.
     parser = argparse.ArgumentParser(description='Processing Meaningful Perturbation data')
     parser.add_argument('--result_path',
-                        default='./results/ILSVRC2012_val_00002056/',
+                        default='./results/gradient/ILSVRC2012_val_00020735/',
                         type=str, help='filepath for the results')
     parser.add_argument('--input_img',
-                        default='./Images/teaser/ILSVRC2012_val_00002056.JPEG',
+                        default='./Images/grad/ILSVRC2012_val_00020735.JPEG',
                         type=str, help='input image filepath')
-    parser.add_argument('--algo',
-                        default='sg',
-                        type=str, help='sg|occlusion|lime|mp')
+    parser.add_argument('--add_noise',
+                        default=0,
+                        type=int, help='add noise to image')       
     parser.add_argument('--dataset',
                         default='imagenet',
                         type=str, help='dataset to run on imagenet | places365')
@@ -34,38 +34,31 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-    if args.algo == 'lime':
-        row_label = ['LIME']
-    elif args.algo == 'occlusion':
-        row_label = ['SP']
-    elif args.algo == 'sg':
-        row_label = ['SG']
-    elif args.algo == 'mp':
-        row_label = ['MP']
-    else:
-        print('Incorrect choice!!')
-        exit(0)
-
     # Read real image
     o_img = cv2.resize(cv2.cvtColor(cv2.imread(args.input_img, 1), cv2.COLOR_BGR2RGB), (224, 224))
     # print(o_img.shape)
 
     # Read generated heatmap
-    heatmap_path = sorted([f for f in os.listdir(os.path.join(args.result_path)) if f.endswith('pytorch.npy') and f.startswith(args.algo)])
-
-    heatmap = [resize(np.load(os.path.join(args.result_path, ll)), (224, 224)) for ll in heatmap_path]
+    if args.add_noise:
+        heatmap_path = sorted([f for f in os.listdir(os.path.join(args.result_path)) if 'if_noise_1' in f])
+        heatmap = [np.load(os.path.join(args.result_path, heatmap_path[ll])) for ll in [0, 2, 1, 3]]
+        row_label=['Noisy']
+    else:
+        heatmap_path = sorted([f for f in os.listdir(os.path.join(args.result_path)) if 'if_noise_0' in f])
+        ipdb.set_trace()
+        heatmap = [np.load(os.path.join(args.result_path, heatmap_path[ll])) for ll in [0, 2, 1, 3]]
+        row_label=['Clean']
 
     # Normalizing heatmaps
-    if args.algo == 'sg' or args.algo == 'lime':
-        heatmap = [i / np.max(np.abs(i)) for i in heatmap]
-        
+    heatmap = [i / np.max(np.abs(i)) for i in heatmap]
+           
     # Make a list of all images to be plotted
     image_batch = [o_img]
     image_batch.extend(heatmap)
-    
+    col_label = ['GoogLeNet, GoogLeNet-R, ResNet, ResNet-R']
     zero_out_plot_multiple_patch_chirag([image_batch],
                                  folderName='./',
                                  row_labels_left=row_label,
                                  row_labels_right=[],
-                                 col_labels=[],
-                                 file_name=os.path.join(args.save_path, 'figure_{}.jpg'.format(args.algo)))
+                                 col_labels=col_label,
+                                 file_name=os.path.join(args.save_path, 'figure_noise_{}.jpg'.format(args.add_noise)))

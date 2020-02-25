@@ -14,3 +14,7 @@ output_path='./results/gradient/'
 # Code
 CUDA_VISIBLE_DEVICES=0 python Gradient_Madry.py -idp ${input_path} -bs ${batch_size} -if_n ${add_noise} -op ${output_path}
 
+add_noise=1
+CUDA_VISIBLE_DEVICES=0 python Gradient_Madry.py -idp ${input_path} -bs ${batch_size} -if_n ${add_noise} -op ${output_path}
+
+
