@@ -27,7 +27,7 @@ Generating the attribution map for the class "matchstick".
 <p align="center">
     <img src="./results/formal_teaser.jpg" width=750px>
 </p>
-<p align="center"><i> The real image followed by the different attribution maps generated using (top-->bottom) LIME, Sliding-Patch, Meaningful Perturbation and SmoothGrad algorithms. We show the sensitivity of each explanation algorithm with respect to its respective hyperparameter.</i></p>
+<p align="center"><i> The real image followed by the different attribution maps generated using (top-->bottom) LIME, Sliding-Patch, Meaningful Perturbation and SmoothGrad algorithms. We show the sensitivity (left-->right) of each explanation algorithm with respect to its respective hyperparameter.</i></p>
 
 ## 3. Licenses
 Note that the code in this repository is licensed under MIT License, but, the pre-trained condition models used by the code have their own licenses. Please carefully check them before use. 
