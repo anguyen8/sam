@@ -10,7 +10,7 @@
 l_bp=0
 num_superpixel=50
 lime_explainer_seed=0
-img_path='./Images/'
+img_path='./Images/teaser/'
 output_path='./results'
 
 # Code
@@ -24,7 +24,7 @@ done
 # Arguments
 num_seed=0
 init_mask='circular'
-mask_size=224
+mask_size=28
 save_evolution_mask=0
 save_plot=0
 save_npy=1
