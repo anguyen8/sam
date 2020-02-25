@@ -41,12 +41,11 @@ if __name__ == '__main__':
     # Read generated heatmap
     if args.add_noise:
         heatmap_path = sorted([f for f in os.listdir(os.path.join(args.result_path)) if 'if_noise_1' in f])
-        heatmap = [np.load(os.path.join(args.result_path, heatmap_path[ll])) for ll in [0, 2, 1, 3]]
+        heatmap = [np.load(os.path.join(args.result_path, heatmap_path[ll])) for ll in [0, 2, 3, 1]]
         row_label=['Noisy']
     else:
         heatmap_path = sorted([f for f in os.listdir(os.path.join(args.result_path)) if 'if_noise_0' in f])
-        ipdb.set_trace()
-        heatmap = [np.load(os.path.join(args.result_path, heatmap_path[ll])) for ll in [0, 2, 1, 3]]
+        heatmap = [np.load(os.path.join(args.result_path, heatmap_path[ll])) for ll in [0, 2, 3, 1]]
         row_label=['Clean']
 
     # Normalizing heatmaps
@@ -55,7 +54,7 @@ if __name__ == '__main__':
     # Make a list of all images to be plotted
     image_batch = [o_img]
     image_batch.extend(heatmap)
-    col_label = ['GoogLeNet, GoogLeNet-R, ResNet, ResNet-R']
+    col_label = []  # ['', 'GoogLeNet', 'GoogLeNet-R', 'ResNet', 'ResNet-R']
     zero_out_plot_multiple_patch_chirag([image_batch],
                                  folderName='./',
                                  row_labels_left=row_label,
