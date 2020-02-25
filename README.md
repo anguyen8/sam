@@ -25,7 +25,7 @@ Generating the attribution map for the class "matchstick".
 * Running `source teaser.sh` produces this result:
 
 <p align="center">
-    <img src="./results/formal_teaser.jpg" width=750px>
+    <img src="./results/formal_teaser.jpg" height=300px width=300px>
 </p>
 <p align="center"><i> The real image followed by the different attribution maps generated using (top-->bottom) LIME, Sliding-Patch, Meaningful Perturbation and SmoothGrad algorithms. We show the sensitivity (left-->right) of each explanation algorithm with respect to its respective hyperparameter.</i></p>
 
