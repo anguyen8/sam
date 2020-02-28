@@ -9,7 +9,7 @@ This repository contains source code necessary to reproduce some of the main res
     author={Naman Bansal and Chirag Agarwal and Anh Nguyen},
     year={2020},
     eprint={},
-    archivePrefix={arXiv},
+    archivePrefix={CVPR},
     primaryClass={cs.LG}
     
 ## 1. Setup
@@ -20,8 +20,8 @@ This repository is built using PyTorch. You can install the necessary libraries 
 ### Pretrained models
 All of our experiments were conducted on two groups of classifiers: (a) [GoogLeNet](https://arxiv.org/pdf/1409.4842.pdf) and [ResNet-50](https://arxiv.org/pdf/1512.03385.pdf) pre-trained on the 1000-class 2012 ImageNet dataset; and (b) the robust versions of them, i.e. GoogLeNet-R and ResNet-R that were trained to also be invariant to small adversarial changes in the input image. The two regular models are obtained from the [PyTorch model zoo](https://pytorch.org/docs/stable/torchvision/models.html), the ResNet-R from [Engstrom et al.](https://arxiv.org/pdf/1906.00945.pdf), and we trained GoogLeNet-R by ourselves using the code released by the author. While the two robust classifiers are more invariant to pixel-wise noise they have lower ImageNet validation-set accuracy scores (50.94% and 56.25%) than those of the original GoogLeNet and ResNet (68.86% and 75.59%).
     
-## Adversarial training details
-[Engstrom et al.](https://arxiv.org/pdf/1906.00945.pdf) adversarially trained a ResNet-50 model using Projected Gradient Descent (PGD) attack with a normalized step size. We followed the author and trained robust GoogLeNet model, denoted as GoogLeNet-R, for our sensitivity experiments. We used adversarial perturbation in L_{2}-norm for generating adversarial samples during training. Additionally, we used \epsilon=3, a step size of 0.5 and the number of steps as 7 for PGD. The model was trained end-to-end for 90 epochs using a batch-size of 256 on 4 Tesla-V100 GPU's. We used SGD optimizer with a learning rate (lr) scheduler starting with lr=0.1 and dropping the learning rate by 10 after every 30 epochs.
+#### Adversarial training details
+[Engstrom et al.](https://arxiv.org/pdf/1906.00945.pdf) adversarially trained a ResNet-50 model using Projected Gradient Descent (PGD) attack with a normalized step size. We followed the author and trained robust GoogLeNet model, denoted as GoogLeNet-R, for our sensitivity experiments. We used adversarial perturbation in <a href="https://www.codecogs.com/eqnedit.php?latex=L_2" target="_blank"><img src="https://latex.codecogs.com/gif.latex?L_2"/></a>-norm for generating adversarial samples during training. Additionally, we used <a href="https://www.codecogs.com/eqnedit.php?latex=\epsilon" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\epsilon"/></a>=3, a step size of 0.5 and the number of steps as 7 for PGD. The model was trained end-to-end for 90 epochs using a batch-size of 256 on 4 Tesla-V100 GPU's. We used SGD optimizer with a learning rate (lr) scheduler starting with lr=0.1 and dropping the learning rate by 10 after every 30 epochs.
 The robust pre-trained models are available [here](https://drive.google.com/drive/u/2/folders/1KdJ0aK0rPjmowS8Swmzxf8hX6gU5gG2U).
 
 ## 2. Usage
