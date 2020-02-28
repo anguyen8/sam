@@ -25,22 +25,22 @@ All of our experiments were conducted on two groups of classifiers: (a) [GoogLeN
 The robust pre-trained models are available [here](https://drive.google.com/drive/u/2/folders/1KdJ0aK0rPjmowS8Swmzxf8hX6gU5gG2U).
 
 ## 2. Usage
-a) The shell script for generating Figure 1 of our paper is in [teaser.sh](teaser.sh). Given an [image](./Images/teaser/ILSVRC2012_val_00002056.JPEG), the script runs SmoothGrad, Sliding-Patch, LIME, and Meaningful Perturbation algorithm for their different hyperparameters and produces a montage image of their respective [attribution maps](./results/formal_teaser.jpg)
+- The shell script for generating Figure 1 of our paper is in [teaser.sh](teaser.sh). Given an [image](./Images/teaser/ILSVRC2012_val_00002056.JPEG), the script runs SmoothGrad, Sliding-Patch, LIME, and Meaningful Perturbation algorithm for their different hyperparameters and produces a montage image of their respective [attribution maps](./results/formal_teaser.jpg)
 
 ### Examples
 Generating the attribution map for the class "matchstick".
-* Running `source teaser.sh` produces this result:
+Running `source teaser.sh` produces this result:
 
 <p align="center">
     <img src="./results/formal_teaser.jpg" height=300px width=300px>
 </p>
 <p align="center"><i> The real image followed by the different attribution maps generated using (top-->bottom) LIME, Sliding-Patch, Meaningful Perturbation and SmoothGrad algorithms. We show the sensitivity (left-->right) of each explanation algorithm with respect to its respective hyperparameter.</i></p>
 
-b) The shell script for generating Figure 2 of our paper is in [gradient.sh](gradient.sh). Given an [image](./Images/grad/ILSVRC2012_val_00020735.JPEG), the script generates the [gradient](./results/formal_gradient.jpg) of four models (GoogLeNet, GoogLeNet-R, ResNet-50, and ResNet-50-R) for a clean and noisy image respectively.
+- The shell script for generating Figure 2 of our paper is in [gradient.sh](gradient.sh). Given an [image](./Images/grad/ILSVRC2012_val_00020735.JPEG), the script generates the [gradient](./results/formal_gradient.jpg) of four models (GoogLeNet, GoogLeNet-R, ResNet-50, and ResNet-50-R) for a clean and noisy image respectively.
 
 ### Examples
 Generating the attribution map for the class "goblet".
-* Running `source gradient.sh` produces this result:
+Running `source gradient.sh` produces this result:
 
 <p align="center">
     <img src="./results/formal_gradient.jpg" height=150px width=300px>
