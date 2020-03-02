@@ -56,4 +56,4 @@ Running  `source sensitivity.sh` runs the sensitivity test on Vanilla Gradient (
 Note that the code in this repository is licensed under MIT License, but, the pre-trained condition models used by the code have their own licenses. Please carefully check them before use. 
 
 ## 4. Questions?
-If you have questions/suggestions, please feel free to [email](mailto:chiragagarwall12@gmail.com) or create github issues.
+If you have questions/suggestions, please feel free to email us or create github issues.
