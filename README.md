@@ -63,7 +63,7 @@ python Sensitivity_Analysis_Basic_Occlusion_Comp_With_Default_Settings.py -idp .
 ```
 from the [sensitivity.sh](sensitivity.sh) would produce the sensitivity results of the Sliding-Patch explanation algorithm to its different patch sizes (52, 53, 54). It generates a report (shown in figure below) which lists down the mean and standard deviation of all evaluation metric scores.
 <p align="center">
-    <img src="./formal_sensitivity_occlusion.jpg" height=200px width=500px>
+    <img src="./formal_sensitivity_occlusion.jpg" height=300px width=600px>
 </p>
 
 ## 3. Licenses
