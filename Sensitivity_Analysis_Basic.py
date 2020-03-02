@@ -132,7 +132,6 @@ if __name__ == '__main__':
 
     img_filenames = os.listdir(args.input_dir_path)
     img_filenames = [i for i in img_filenames if 'ILSVRC2012_val_000' in i and int(i.split('_')[-1]) in range(1, 50001)]
-    ipdb.set_trace()
     if args.idx_flag == 1:
         img_filenames = img_filenames[0]
 

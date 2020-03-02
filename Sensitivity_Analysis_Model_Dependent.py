@@ -113,8 +113,8 @@ def compute_score(heat, metric_name, **kwargs):
 
         metricObj = kwargs['metricObj']
         model_name = kwargs['model_name']
-        dir = abs_path(f'./temp_results/Metric_{metric_name}/Model_{model_name}')
-        eutils.mkdir_p(dir)
+        # dir = abs_path(f'./temp_results/Metric_{metric_name}/Model_{model_name}')
+        # eutils.mkdir_p(dir)
         ## We are computing percentage AUC
         aa = metricObj.single_run(img, heat) #, verbose=1, save_to=dir)
         out = auc(aa)
