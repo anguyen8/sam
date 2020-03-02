@@ -17,7 +17,9 @@ python Sensitivity_Analysis_Basic.py -idp ./results/Sensitivity/Gradient/ -mn gr
 python Sensitivity_Analysis_Basic.py -idp ./results/Sensitivity/Gradient/ -mn grad --metric_name ssim -op ./results/evaluation_result_text_files/Gradient/ #ssim
 python Sensitivity_Analysis_Basic.py -idp ./results/Sensitivity/Gradient/ -mn grad --metric_name hog -op ./results/evaluation_result_text_files/Gradient/ #hog
 python Sensitivity_Analysis_IOU.py -idp ./results/Sensitivity/Gradient/ -mn grad -op ./results/evaluation_result_text_files/Gradient #iou
+
 CUDA_VISIBLE_DEVICES=0 python Sensitivity_Analysis_Model_Dependent.py -idp ./results/Sensitivity/Gradient -mn grad --metric_name insertion -op ./results/evaluation_result_text_files/Gradient #insertion
+
 CUDA_VISIBLE_DEVICES=0 python Sensitivity_Analysis_Model_Dependent.py -idp ./results/Sensitivity/Gradient -mn grad --metric_name deletion -op ./results/evaluation_result_text_files/Gradient #deletion
 ############################################################################################################################################################################################################################
 
@@ -34,7 +36,9 @@ python Sensitivity_Analysis_Basic.py -idp ./results/Sensitivity/InpGrad/ -mn inp
 python Sensitivity_Analysis_Basic.py -idp ./results/Sensitivity/Gradient/ -mn inpgrad --metric_name ssim -op ./results/evaluation_result_text_files/InpGrad/ #ssim
 python Sensitivity_Analysis_Basic.py -idp ./results/Sensitivity/Gradient/ -mn inpgrad --metric_name hog -op ./results/evaluation_result_text_files/InpGrad/ #hog
 python Sensitivity_Analysis_IOU.py -idp ./results/Sensitivity/Gradient/ -mn inpgrad -op ./results/evaluation_result_text_files/InpGrad #iou
+
 CUDA_VISIBLE_DEVICES=0 python Sensitivity_Analysis_Model_Dependent.py -idp ./results/Sensitivity/Gradient -mn inpgrad --metric_name insertion -op ./results/evaluation_result_text_files/InpGrad #insertion
+
 CUDA_VISIBLE_DEVICES=0 python Sensitivity_Analysis_Model_Dependent.py -idp ./results/Sensitivity/Gradient -mn inpgrad --metric_name deletion -op ./results/evaluation_result_text_files/InpGrad #deletion
 ############################################################################################################################################################################################################################
 
