@@ -49,7 +49,7 @@ Running `source gradient.sh` produces this result:
 <p align="center"><i> The clean image followed by the gradient attribution maps generated using (left-->right) GoogLeNet, GoogLeNet-R, ResNet-50, and ResNet-50-R models. We show the sensitivity of the gradients on adding a small Gaussian noise to the clean image for all the models respectively.</i></p>
 
 - The shell script for evaluating the sensitivity of different explanation methods is in [sensitivity.sh](sensitivity.sh). The sensitivity is calculated for five sample images in [this](./Images/images_sensitivity/) folder.
-Running  `source sensitivity.sh` runs the sensitivity test on Vanilla Gradient (VG), InputxGradient (IG), Sliding-Patch (SP), Meaningful Perturbation (MP), LIME, and Smooth Gradient (SG) explanation methods on their respective hyperparameters. Given the list of images in the folder, the script calculates the average accuracy scores across all the images using the evaluation metrics described in the paper.
+Running  `source sensitivity.sh` runs the sensitivity test on Vanilla Gradient (VG), Input x Gradient (IG), Sliding-Patch (SP), Meaningful Perturbation (MP), LIME, and Smooth Gradient (SG) explanation methods on their respective hyperparameters. Given the list of images in the folder, the script calculates the average accuracy scores across all the images using the evaluation metrics described in the paper.
 
 
 ## 3. Licenses
