@@ -53,15 +53,13 @@ Running  `source sensitivity.sh` runs the sensitivity test on Vanilla Gradient (
 
 ### Examples
 Running 
-`## Occlusion
-# Heatmaps
-for patch in {52,53,54}
+`for patch in {52,53,54}
 do
   CUDA_VISIBLE_DEVICES=0 python Occlusion_Madry.py -idp ./Images/images_sensitivity/ -ops ${patch} -op ./results/Sensitivity/Occlusion/
 done
 
-# Evaluations
 python Sensitivity_Analysis_Basic_Occlusion_Comp_With_Default_Settings.py -idp ./results/Sensitivity/Occlusion/ -mn occlusion --metric_name hog -op ./results/evaluation_result_text_files/Occlusion --exp_num a03`
+
 from the [sensitivity.sh](sensitivity.sh) would produce the sensitivity results of the Sliding-Patch explanation algorithm to its different patch sizes (52, 53, 54). It generates a report 
 <p align="center">
     <img src="./formal_sensitivity_occlusion.jpg" height=150px width=300px>
