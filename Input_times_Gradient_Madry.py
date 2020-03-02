@@ -86,6 +86,8 @@ def get_arguments():
         args.out_path = './'
     args.out_path = os.path.abspath(args.out_path)
 
+    args.batch_size = 1  ## to make sure only 1 image is being ran. you can chnage it if you like
+
     return args
 
 
@@ -134,9 +136,9 @@ if __name__ == '__main__':
 
     ############################
     model_names = []
-    # model_names.append('madry')
-    # model_names.append('pytorch')
-    # model_names.append('googlenet') #Robust_ResNet
+    model_names.append('madry')
+    model_names.append('pytorch')
+    model_names.append('googlenet') #Robust_ResNet
     model_names.append('madry_googlenet')  # Robust GoogleNet
 
 
@@ -175,10 +177,11 @@ if __name__ == '__main__':
         data_loader = data_loader_dict[model_name]
         im_sz = im_sz_dict[model_name]
 
-        out_dir = os.path.join(args.out_path, f'InpxGrad_{model_name}')
-        if not os.path.exists(out_dir):
-            os.makedirs(out_dir)
-        print(f'Saving results in {out_dir}')
+        if args.batch_size > 1:
+            out_dir = os.path.join(args.out_path, f'InpxGrad_{model_name}')
+            if not os.path.exists(out_dir):
+                os.makedirs(out_dir)
+            print(f'Saving results in {out_dir}')
 
         ## Load Model
         print(f'Loading model {model_arg}')
@@ -192,6 +195,14 @@ if __name__ == '__main__':
         for i, (img, targ_class, img_path) in enumerate(data_loader):
             batch_time = time.time()
             model.zero_grad()
+
+            if args.batch_size == 1:
+                ## only for batch size of 1
+                img_name = img_path[0].split('/')[-1].split('.')[0]
+                out_dir = os.path.join(args.out_path, img_name)
+                if not os.path.exists(out_dir):
+                    os.makedirs(out_dir)
+                print(f'Saving results in {out_dir}')
 
             print(f'Analysing batch: {i} of size {len(targ_class)}')
             targ_class = targ_class.cpu()
@@ -232,8 +243,13 @@ if __name__ == '__main__':
             heatmap = np.mean(heatmap, axis=-1)
 
             img_path = np.asarray(list(img_path), dtype=str)
-            np.savetxt(os.path.join(out_dir, f'time_{f_time}_img_paths_{par_name}_batch_idx_{i:02d}_batch_size_{sz:04d}.txt'), img_path, fmt='%s')
-            np.save(os.path.join(out_dir, f'time_{f_time}_heatmaps_{par_name}_batch_idx_{i:02d}_batch_size_{sz:04d}.npy'), heatmap)
+
+            if args.batch_size == 1:
+                ## only for batch size of 1
+                np.save(os.path.join(out_dir, f'input_times_grad_{par_name}.npy'), heatmap[0])
+            else:
+                np.savetxt(os.path.join(out_dir, f'time_{f_time}_img_paths_{par_name}_batch_idx_{i:02d}_batch_size_{sz:04d}.txt'), img_path, fmt='%s')
+                np.save(os.path.join(out_dir, f'time_{f_time}_heatmaps_{par_name}_batch_idx_{i:02d}_batch_size_{sz:04d}.npy'), heatmap)
 
             print(f'Time taken for a batch is {time.time() - batch_time}\n')
     ##########################################

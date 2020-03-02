@@ -186,10 +186,11 @@ if __name__ == '__main__':
         data_loader = data_loader_dict[model_name]
         im_sz = im_sz_dict[model_name]
 
-        # out_dir = os.path.join(args.out_path, f'Grad_{model_name}')
-        # if not os.path.exists(out_dir):
-        #     os.makedirs(out_dir)
-        # print(f'Saving results in {out_dir}')
+        if args.batch_size > 1:
+            out_dir = os.path.join(args.out_path, f'Grad_{model_name}')
+            if not os.path.exists(out_dir):
+                os.makedirs(out_dir)
+            print(f'Saving results in {out_dir}')
 
         ## Load Model
         print(f'Loading model {model_arg}')
@@ -204,8 +205,13 @@ if __name__ == '__main__':
             batch_time = time.time()
             model.zero_grad()
 
-            ## only for batch size of 1
-            img_name = img_path[0].split('/')[-1].split('.')[0]
+            if args.batch_size == 1:
+                ## only for batch size of 1
+                img_name = img_path[0].split('/')[-1].split('.')[0]
+                out_dir = os.path.join(args.out_path, img_name)
+                if not os.path.exists(out_dir):
+                    os.makedirs(out_dir)
+                print(f'Saving results in {out_dir}')
 
             print(f'Analysing batch: {i} of size {len(targ_class)}')
             targ_class = targ_class.cpu()
@@ -216,10 +222,7 @@ if __name__ == '__main__':
 
             ## #We want to compute gradients
             img = Variable(img, requires_grad=True)
-            out_dir = os.path.join(args.out_path, img_name)
-            if not os.path.exists(out_dir):
-                os.makedirs(out_dir)
-            print(f'Saving results in {out_dir}')
+
 
             ## #Prob and gradients
             sel_nodes_shape = targ_class.shape
@@ -251,11 +254,12 @@ if __name__ == '__main__':
 
             img_path = np.asarray(list(img_path), dtype=str)
 
-            ## only for batch size of 1
-            np.save(os.path.join(out_dir, f'grad_{par_name}.npy'), grad[0])
-
-            # np.savetxt(os.path.join(out_dir, f'time_{f_time}_img_paths_{par_name}_batch_idx_{i:02d}_batch_size_{sz:04d}.txt'), img_path, fmt='%s')
-            # np.save(os.path.join(out_dir, f'time_{f_time}_heatmaps_{par_name}_batch_idx_{i:02d}_batch_size_{sz:04d}.npy'), grad)
+            if args.batch_size == 1:
+                ## only for batch size of 1
+                np.save(os.path.join(out_dir, f'grad_{par_name}.npy'), grad[0])
+            else:
+                np.savetxt(os.path.join(out_dir, f'time_{f_time}_img_paths_{par_name}_batch_idx_{i:02d}_batch_size_{sz:04d}.txt'), img_path, fmt='%s')
+                np.save(os.path.join(out_dir, f'time_{f_time}_heatmaps_{par_name}_batch_idx_{i:02d}_batch_size_{sz:04d}.npy'), grad)
 
             print(f'Time taken for a batch is {time.time() - batch_time}\n')
 
