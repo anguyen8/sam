@@ -51,6 +51,21 @@ Running `source gradient.sh` produces this result:
 - The shell script for evaluating the sensitivity of different explanation methods is in [sensitivity.sh](sensitivity.sh). The sensitivity is calculated for five sample images in [this](./Images/images_sensitivity/) folder across all four models (GoogLeNet, GoogLeNet-R, ResNet-50, and ResNet-50-R).
 Running  `source sensitivity.sh` runs the sensitivity test on Vanilla Gradient (VG), Input x Gradient (IG), Sliding-Patch (SP), Meaningful Perturbation (MP), LIME, and Smooth Gradient (SG) explanation methods on their respective hyperparameters. Given the list of images in the folder, the script calculates the average accuracy scores across all the images using the evaluation metrics described in the paper.
 
+### Examples
+Running 
+`## Occlusion
+# Heatmaps
+for patch in {52,53,54}
+do
+  CUDA_VISIBLE_DEVICES=0 python Occlusion_Madry.py -idp ./Images/images_sensitivity/ -ops ${patch} -op ./results/Sensitivity/Occlusion/
+done
+
+# Evaluations
+python Sensitivity_Analysis_Basic_Occlusion_Comp_With_Default_Settings.py -idp ./results/Sensitivity/Occlusion/ -mn occlusion --metric_name hog -op ./results/evaluation_result_text_files/Occlusion --exp_num a03`
+from the [sensitivity.sh](sensitivity.sh) would produce the sensitivity results of the Sliding-Patch explanation algorithm to its different patch sizes (52, 53, 54). It generates a report 
+<p align="center">
+    <img src="./formal_sensitivity_occlusion.jpg" height=150px width=300px>
+</p>
 
 ## 3. Licenses
 Note that the code in this repository is licensed under MIT License, but, the pre-trained condition models used by the code have their own licenses. Please carefully check them before use. 
