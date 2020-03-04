@@ -1,6 +1,7 @@
 # Directories
 models/
 results/
+Extra_Files/
 *.pt
 
 # Byte-compiled / optimized / DLL files
