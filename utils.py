@@ -11,12 +11,14 @@ from matplotlib.colors import ListedColormap
 from PIL import Image
 from robustness import model_utils, datasets
 from user_constants import DATA_PATH_DICT
+import settings
 
 # use_cuda = torch.cuda.is_available()
-text_file = f'/home/naman/CS231n/heatmap_tests/' \
-            f'Madri/Madri_New/robustness_applications/img_name_files/' \
-            f'time_15669152608009198_seed_0_' \
-            f'common_correct_imgs_model_names_madry_ressnet50_googlenet.txt'
+text_file = settings.paper_img_txt_file
+# text_file = f'/home/naman/CS231n/heatmap_tests/' \
+#             f'Madri/Madri_New/robustness_applications/img_name_files/' \
+#             f'time_15669152608009198_seed_0_' \
+#             f'common_correct_imgs_model_names_madry_ressnet50_googlenet.txt'
 img_name_list = []
 with open(text_file, 'r') as f:
     for line in f:
@@ -29,7 +31,7 @@ class DataProcessing:
         self.transform = transform
         self.args = args
 
-        if data_path == abs_path('~/CS231n/heatmap_tests/images/ILSVRC2012_img_val/'):
+        if data_path == abs_path(settings.imagenet_val_path):
             aa = img_name_list[img_idxs[0]:img_idxs[1]]
             self.img_filenames = [os.path.join(data_path, f'{ii}.JPEG') for ii in aa]
             # self.img_filenames.sort()
@@ -67,10 +69,13 @@ class DataProcessing:
         # ipdb.set_trace()
 
         # ImageNet 2012 validation set images?
-        with open(os.path.join(base_dir, "imagenet_class_mappings", "ground_truth_val2012")) as f:
+        with open(os.path.join(settings.imagenet_class_mappings, "ground_truth_val2012")) as f:
+        # with open(os.path.join(base_dir, "imagenet_class_mappings", "ground_truth_val2012")) as f:
             ground_truth_val2012 = {x.split()[0]: int(x.split()[1])
                                     for x in f.readlines() if len(x.strip()) > 0}
-        with open(os.path.join(base_dir, "imagenet_class_mappings", "synset_id_to_class")) as f:
+
+        with open(os.path.join(settings.imagenet_class_mappings, "synset_id_to_class")) as f:
+        # with open(os.path.join(base_dir, "imagenet_class_mappings", "synset_id_to_class")) as f:
             synset_to_class = {x.split()[1]: int(x.split()[0])
                                for x in f.readlines() if len(x.strip()) > 0}
 
@@ -98,8 +103,9 @@ def load_data(img_dir, preprocessFn, batch_size=1, img_idxs=[0, 1], idx_flag=1, 
 
 ###########################
 def imagenet_label_mappings():
-    fileName = '/home/naman/CS231n/heatmap_tests/Madri/Madri_New/' \
-               'robustness_applications/imagenet_label_mapping'
+    # fileName = '/home/naman/CS231n/heatmap_tests/Madri/Madri_New/' \
+    #            'robustness_applications/imagenet_label_mapping'
+    fileName = os.path.join(settings.imagenet_class_mappings, 'imagenet_label_mapping')
     with open(fileName, 'r') as f:
         image_label_mapping = {int(x.split(":")[0]): x.split(":")[1].strip()
                                for x in f.readlines() if len(x.strip()) > 0}
@@ -348,6 +354,7 @@ def mkdir_p(mypath):
         else:
             raise
 ###########################
+
 def return_transform(model_name):
     if model_name == 'madry':
         preprocessFn = transforms.Compose([transforms.Resize((256, 256)),
@@ -372,10 +379,13 @@ def get_image_class(filepath):
     # ipdb.set_trace()
 
     # ImageNet 2012 validation set images?
-    with open(os.path.join(base_dir, "imagenet_class_mappings", "ground_truth_val2012")) as f:
+    with open(os.path.join(settings.imagenet_class_mappings, "ground_truth_val2012")) as f:
+    # with open(os.path.join(base_dir, "imagenet_class_mappings", "ground_truth_val2012")) as f:
         ground_truth_val2012 = {x.split()[0]: int(x.split()[1])
                                 for x in f.readlines() if len(x.strip()) > 0}
-    with open(os.path.join(base_dir, "imagenet_class_mappings", "synset_id_to_class")) as f:
+
+    with open(os.path.join(settings.imagenet_class_mappings, "synset_id_to_class")) as f:
+    # with open(os.path.join(base_dir, "imagenet_class_mappings", "synset_id_to_class")) as f:
         synset_to_class = {x.split()[1]: int(x.split()[0])
                            for x in f.readlines() if len(x.strip()) > 0}
 
