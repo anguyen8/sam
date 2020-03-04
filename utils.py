@@ -149,7 +149,7 @@ def load_madry_model(arch='madry', if_pre=0, my_attacker=False, parallel=False):
         model_kwargs = {
             'arch': 'resnet50',
             'dataset': dataset,
-            'resume_path': f'./models/{DATA}.pt',
+            'resume_path': f'./models/ResNet50_R.pt',
             'parallel': parallel,
             'my_attacker':my_attacker,
         }
@@ -160,7 +160,7 @@ def load_madry_model(arch='madry', if_pre=0, my_attacker=False, parallel=False):
         model_kwargs = {
             'arch': 'googlenet',
             'dataset': dataset,
-            'resume_path': f'./models/ImageNet_GoogleNet.pt.best',
+            'resume_path': f'./models/GoogleNet_R.pt',
             'parallel': parallel,
             'my_attacker': my_attacker,
         }
