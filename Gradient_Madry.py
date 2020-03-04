@@ -29,6 +29,7 @@ import warnings
 warnings.filterwarnings("ignore")
 
 import argparse
+import settings
 
 use_cuda = torch.cuda.is_available()
 ## For reproducebility
@@ -75,7 +76,7 @@ def get_arguments():
                         )
 
     parser.add_argument('-e_idx', '--end_idx', type=int,
-                        help='End index for selecting images. Default: 2K', default=2000,
+                        help='End index for selecting images. Default: 2K', default=1735,
                         )
 
     parser.add_argument('--idx_flag', type=int,
@@ -85,7 +86,7 @@ def get_arguments():
                         )
 
     parser.add_argument('-bs', '--batch_size', type=int,
-                        help='Size for the batch of images. Default: 800', default=800,
+                        help='Size for the batch of images. Default: 1', default=1,
                         )
 
     # Parse the arguments
