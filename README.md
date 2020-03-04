@@ -23,7 +23,7 @@ All of our experiments were conducted on two groups of classifiers: (a) [GoogLeN
 #### Adversarial training details
 [Engstrom et al.](https://arxiv.org/pdf/1906.00945.pdf) adversarially trained a ResNet-50 model using Projected Gradient Descent (PGD) attack with a normalized step size. We followed the author and trained robust GoogLeNet model, denoted as GoogLeNet-R, for our sensitivity experiments. We used adversarial perturbation in <a href="https://www.codecogs.com/eqnedit.php?latex=L_2" target="_blank"><img src="https://latex.codecogs.com/gif.latex?L_2"/></a>-norm for generating adversarial samples during training. Additionally, we used <a href="https://www.codecogs.com/eqnedit.php?latex=\epsilon" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\epsilon"/></a>=3, a step size of 0.5 and the number of steps as 7 for PGD. The model was trained end-to-end for 90 epochs using a batch-size of 256 on 4 Tesla-V100 GPU's. We used SGD optimizer with a learning rate (lr) scheduler starting with lr=0.1 and dropping the learning rate by 10 after every 30 epochs.
 
-All the pre-trained models are available [here](https://drive.google.com/drive/u/2/folders/1KdJ0aK0rPjmowS8Swmzxf8hX6gU5gG2U).
+All the pre-trained models are available [here](https://drive.google.com/drive/u/2/folders/1KdJ0aK0rPjmowS8Swmzxf8hX6gU5gG2U). The user has to download the weight files and store them under **./models/**.
 GoogLeNet-R can be trained using the script provided in [train.sh](train.sh). The user has to install the [robustness](https://github.com/MadryLab/robustness) repo and provide the input directory for the ImageNet training images under **data_path** argument.
 
 ## 2. Usage
