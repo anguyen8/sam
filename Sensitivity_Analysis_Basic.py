@@ -137,7 +137,7 @@ if __name__ == '__main__':
         img_filenames = img_filenames[0]
 
     # base_img_dir = '/home/naman/CS231n/heatmap_tests/images/ILSVRC2012_img_val'
-    base_img_dir = settings.imagenet_val_path
+    base_img_dir = abs_path(settings.imagenet_val_path)
     # text_file = f'/home/naman/CS231n/heatmap_tests/' \
     #             f'Madri/Madri_New/robustness_applications/img_name_files/' \
     #             f'time_15669152608009198_seed_0_' \

@@ -17,7 +17,7 @@ import settings
 
 use_cuda = torch.cuda.is_available()
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-text_file = settings.paper_img_txt_file
+text_file = abs_path(settings.paper_img_txt_file)
 # text_file = f'/home/naman/CS231n/heatmap_tests/' \
 #             f'Madri/Madri_New/robustness_applications/img_name_files/' \
 #             f'time_15669152608009198_seed_0_' \

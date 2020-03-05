@@ -133,7 +133,7 @@ def compute_score(h1, h2, method, metric_name):
 
 ########################################################################################################################
 if __name__ == '__main__':
-    base_img_dir = settings.imagenet_val_path
+    base_img_dir = abs_path(settings.imagenet_val_path)
     # base_img_dir = '/home/naman/CS231n/heatmap_tests/images/ILSVRC2012_img_val'
     # text_file = f'/home/naman/CS231n/heatmap_tests/' \
     #             f'Madri/Madri_New/robustness_applications/img_name_files/' \

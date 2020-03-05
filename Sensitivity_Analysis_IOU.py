@@ -116,7 +116,7 @@ def preprocess_gt_bb(img, size):
 
 
 ########################################################################################################################
-def get_true_bbox(img_path, base_xml_dir=settings.imagenet_val_xml_path):
+def get_true_bbox(img_path, base_xml_dir=abs_path(settings.imagenet_val_xml_path)):
     # parse the xml for bounding box coordinates
     temp_img = Image.open(img_path)
     sz = temp_img.size # width x height
@@ -215,7 +215,7 @@ def compute_score(heat, metric_name, **kwargs):
 
 ########################################################################################################################
 if __name__ == '__main__':
-    base_img_dir = settings.imagenet_val_path
+    base_img_dir = abs_path(settings.imagenet_val_path)
     # base_img_dir = '/home/naman/CS231n/heatmap_tests/images/ILSVRC2012_img_val'
     # text_file = f'/home/naman/CS231n/heatmap_tests/' \
     #             f'Madri/Madri_New/robustness_applications/img_name_files/' \

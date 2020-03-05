@@ -18,7 +18,7 @@ from matplotlib import cm
 from matplotlib.colors import ListedColormap
 
 from termcolor import colored
-from robustness import model_utils, datasets
+# from robustness import model_utils, datasets
 from user_constants import DATA_PATH_DICT
 
 import utils as eutils
@@ -31,7 +31,7 @@ warnings.filterwarnings("ignore")
 import argparse
 
 use_cuda = torch.cuda.is_available()
-text_file = settings.paper_img_txt_file
+text_file = abs_path(settings.paper_img_txt_file)
 # text_file = f'/home/naman/CS231n/heatmap_tests/' \
 #             f'Madri/Madri_New/robustness_applications/img_name_files/' \
 #             f'time_15669152608009198_seed_0_' \
