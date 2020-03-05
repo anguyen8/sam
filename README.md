@@ -30,6 +30,9 @@ GoogLeNet-R can be trained using the script provided in [train.sh](train.sh). Th
 ## 2. Usage
 - The shell script for generating Figure 1 of our paper is in [teaser.sh](teaser.sh). Given an [image](./Images/teaser/ILSVRC2012_val_00002056.JPEG), the script runs SmoothGrad, Sliding-Patch, LIME, and Meaningful Perturbation algorithm for their different hyperparameters and produces a montage image of their respective [attribution maps](./results/formal_teaser.jpg)
 
+## 3. Dataset
+- We ran our experiments on a 1735 images from the original ImageNet validation dataset as described in the paper. We have provided a text file in **./img_file_names/paper_images_list.txt**. So if you run any explanation method with input directory being a path to the validation set, our implementation will only produce heatmaps on the 1735 images mentioned in the list instead of running on all the 50K images. 
+
 ### Examples
 Generating the attribution map for the class "matchstick".
 Running `source teaser.sh` produces this result:
