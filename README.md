@@ -27,6 +27,11 @@ All of our experiments were conducted on two groups of classifiers: (a) [GoogLeN
 All the pre-trained models are available [here](https://drive.google.com/drive/u/2/folders/1KdJ0aK0rPjmowS8Swmzxf8hX6gU5gG2U). The user has to download the weight files and store them under the **./models/** directory.
 GoogLeNet-R can be trained using the script provided in [train.sh](train.sh). The user has to install the [robustness](https://github.com/MadryLab/robustness) repo and provide the input directory for the ImageNet training images under **data_path** argument. *(For the training purpose, please install the original [robustness](https://github.com/MadryLab/robustness) repo since we have made slight modifications to the one that is in our repo.)*
 
+These are the following modifations that we made to the **robustness** directory. 
+- By default, it return a tuple *(logits, input)*. We chnaged it to output only *logits*.
+- By default, it requires a different input normalization. We have modified it to allow both the normal pytorch pre-processing and the one used originally. Please refer to the function **load_madry_model()**, in **./utils.py** for more details. 
+- So, if you are wrtiting your own explanation method or want to rewrite one of the methods in our repo on robust models, we would recommend setting **my_attacker=True** while calling **load_madry_model()**. This greatly simplifies the implementation. You should only set it to **False** if you want to adversarially perturb the image. 
+
 ## 2. Usage
 - The shell script for generating Figure 1 of our paper is in [teaser.sh](teaser.sh). Given an [image](./Images/teaser/ILSVRC2012_val_00002056.JPEG), the script runs SmoothGrad, Sliding-Patch, LIME, and Meaningful Perturbation algorithm for their different hyperparameters and produces a montage image of their respective [attribution maps](./results/formal_teaser.jpg)
 
