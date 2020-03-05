@@ -1,6 +1,6 @@
 # Directories
 models/
-results/
+# results/
 Extra_Files/
 *.pt
 
