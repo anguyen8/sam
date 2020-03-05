@@ -12,6 +12,7 @@ import utils as eutils
 import torch.nn as nn
 import numpy as np
 import torch
+import settings
 
 def get_arguments():
     # Initialize the parser
@@ -57,7 +58,7 @@ def get_arguments():
                         )
 
     parser.add_argument('-e_idx', '--end_idx', type=int,
-                        help='End index for selecting images. Default: 2K', default=2000,
+                        help='End index for selecting images. Default: 2K', default=1735,
                         )
 
     # parser.add_argument('--if_random', action='store_true', default=False,
@@ -132,7 +133,8 @@ def compute_score(h1, h2, method, metric_name):
 
 ########################################################################################################################
 if __name__ == '__main__':
-    base_img_dir = '/home/naman/CS231n/heatmap_tests/images/ILSVRC2012_img_val'
+    base_img_dir = settings.imagenet_val_path
+    # base_img_dir = '/home/naman/CS231n/heatmap_tests/images/ILSVRC2012_img_val'
     # text_file = f'/home/naman/CS231n/heatmap_tests/' \
     #             f'Madri/Madri_New/robustness_applications/img_name_files/' \
     #             f'time_15669152608009198_seed_0_' \

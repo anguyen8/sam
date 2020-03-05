@@ -22,6 +22,7 @@ from robustness import model_utils, datasets
 from user_constants import DATA_PATH_DICT
 
 import utils as eutils
+import settings
 
 import warnings
 
@@ -30,10 +31,11 @@ warnings.filterwarnings("ignore")
 import argparse
 
 use_cuda = torch.cuda.is_available()
-text_file = f'/home/naman/CS231n/heatmap_tests/' \
-            f'Madri/Madri_New/robustness_applications/img_name_files/' \
-            f'time_15669152608009198_seed_0_' \
-            f'common_correct_imgs_model_names_madry_ressnet50_googlenet.txt'
+text_file = settings.paper_img_txt_file
+# text_file = f'/home/naman/CS231n/heatmap_tests/' \
+#             f'Madri/Madri_New/robustness_applications/img_name_files/' \
+#             f'time_15669152608009198_seed_0_' \
+#             f'common_correct_imgs_model_names_madry_ressnet50_googlenet.txt'
 img_name_list = []
 with open(text_file, 'r') as f:
     for line in f:
@@ -85,7 +87,7 @@ def get_arguments():
                         )
 
     parser.add_argument('-e_idx', '--end_idx', type=int,
-                        help='End index for selecting images. Default: 2K', default=2000,
+                        help='End index for selecting images. Default: 2K', default=1735,
                         )
 
     parser.add_argument('--idx_flag', type=int,
