@@ -13,13 +13,15 @@ from PIL import Image
 from tqdm import tqdm
 from srblib import abs_path
 import utils as eutils
+import settings
 
 use_cuda = torch.cuda.is_available()
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-text_file = f'/home/naman/CS231n/heatmap_tests/' \
-            f'Madri/Madri_New/robustness_applications/img_name_files/' \
-            f'time_15669152608009198_seed_0_' \
-            f'common_correct_imgs_model_names_madry_ressnet50_googlenet.txt'
+text_file = settings.paper_img_txt_file
+# text_file = f'/home/naman/CS231n/heatmap_tests/' \
+#             f'Madri/Madri_New/robustness_applications/img_name_files/' \
+#             f'time_15669152608009198_seed_0_' \
+#             f'common_correct_imgs_model_names_madry_ressnet50_googlenet.txt'
 img_name_list = []
 with open(text_file, 'r') as f:
     for line in f:
@@ -70,7 +72,7 @@ def get_arguments():
                         )
 
     parser.add_argument('-e_idx', '--end_idx', type=int,
-                        help='End index for selecting images. Default: 2K', default=2000,
+                        help='End index for selecting images. Default: 2K', default=1735,
                         )
 
     parser.add_argument('--idx_flag', type=int,

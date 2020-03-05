@@ -6,6 +6,7 @@ import sys, argparse, warnings, os, time, ipdb
 from skimage.util import view_as_windows
 import numpy as np
 import utils as eutils
+import settings
 
 warnings.filterwarnings("ignore")
 
@@ -42,7 +43,7 @@ def get_arguments():
                         )
 
     parser.add_argument('-e_idx', '--end_idx', type=int,
-                        help='End index for selecting images. Default: 2K', default=2000,
+                        help='End index for selecting images. Default: 2K', default=1735,
                         )
 
     parser.add_argument('--idx_flag', type=int,

@@ -22,6 +22,7 @@ from matplotlib.colors import ListedColormap
 from robustness import model_utils, datasets
 from user_constants import DATA_PATH_DICT
 import utils as eutils
+import settings
 
 import skimage
 from lime import lime_image
@@ -29,10 +30,11 @@ from lime.wrappers.scikit_image import SegmentationAlgorithm
 from skimage.segmentation import mark_boundaries
 
 use_cuda = torch.cuda.is_available()
-text_file = f'/home/naman/CS231n/heatmap_tests/' \
-            f'Madri/Madri_New/robustness_applications/img_name_files/' \
-            f'time_15669152608009198_seed_0_' \
-            f'common_correct_imgs_model_names_madry_ressnet50_googlenet.txt'
+text_file = settings.paper_img_txt_file
+# text_file = f'/home/naman/CS231n/heatmap_tests/' \
+#             f'Madri/Madri_New/robustness_applications/img_name_files/' \
+#             f'time_15669152608009198_seed_0_' \
+#             f'common_correct_imgs_model_names_madry_ressnet50_googlenet.txt'
 img_name_list = []
 with open(text_file, 'r') as f:
     for line in f:
@@ -74,7 +76,7 @@ def get_arguments():
                         )
 
     parser.add_argument('-e_idx', '--end_idx', type=int,
-                        help='End index for selecting images. Default: 2K', default=2000,
+                        help='End index for selecting images. Default: 2K', default=1735,
                         )
 
     parser.add_argument('--idx_flag', type=int,
@@ -163,7 +165,7 @@ class DataProcessing:
         self.mean = mean
         self.var = var
 
-        if data_path == abs_path('~/CS231n/heatmap_tests/images/ILSVRC2012_img_val/'):
+        if data_path == abs_path(settings.imagenet_val_path):
             aa = img_name_list[img_idxs[0]:img_idxs[1]]
             self.img_filenames = [os.path.join(data_path, f'{ii}.JPEG') for ii in aa]
 
@@ -207,10 +209,13 @@ class DataProcessing:
     def get_image_class(self, filepath):
         base_dir = '/home/naman/CS231n/heatmap_tests/'
         # ImageNet 2012 validation set images?
-        with open(os.path.join(base_dir, "imagenet_class_mappings", "ground_truth_val2012")) as f:
+        with open(os.path.join(settings.imagenet_class_mappings, "ground_truth_val2012")) as f:
+        # with open(os.path.join(base_dir, "imagenet_class_mappings", "ground_truth_val2012")) as f:
             ground_truth_val2012 = {x.split()[0]: int(x.split()[1])
                                     for x in f.readlines() if len(x.strip()) > 0}
-        with open(os.path.join(base_dir, "imagenet_class_mappings", "synset_id_to_class")) as f:
+
+        with open(os.path.join(settings.imagenet_class_mappings, "synset_id_to_class")) as f:
+        # with open(os.path.join(base_dir, "imagenet_class_mappings", "synset_id_to_class")) as f:
             synset_to_class = {x.split()[1]: int(x.split()[0])
                                for x in f.readlines() if len(x.strip()) > 0}
 
