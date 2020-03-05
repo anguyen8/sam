@@ -140,6 +140,15 @@ def load_orig_imagenet_model(arch='resnet50', if_pre=0, my_attacker=False, paral
     return model
 
 ###########################
+## TODO: Rewrite every code using my_attacker = True
+###########################
+## 1. By default, Madry model return a tuple (logits, image). This has been chnaged to retun only logits
+
+## 2. There is other paramterer called 'my_attacker' that has been introduced by us.
+## This is done to so that we can use default PyTorch image pre-processing. Instead of using the ones provided by Madry guys
+## Refer to `./robustness/attacker.py` for more details/implementation
+
+## This was done at a later stage. So some codes use my_attacker = True and some set it to False
 def load_madry_model(arch='madry', if_pre=0, my_attacker=False, parallel=False):
     DATA = 'ImageNet'  # Choices: ['CIFAR', 'ImageNet', 'RestrictedImageNet']
 

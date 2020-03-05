@@ -175,7 +175,8 @@ class AttackerModel(ch.nn.Module):
         return output #(output, inp)
 
 
-## This taken in the standard PyTorch input (No need to normalize like Madry)
+## This takes in the standard PyTorch input (No need to normalize like Madry)
+## This would allow you to adversarially perturb the input
 class MyAttackerModel(ch.nn.Module):
     def __init__(self, model, dataset):
         super(MyAttackerModel, self).__init__()

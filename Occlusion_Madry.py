@@ -43,7 +43,7 @@ def get_arguments():
                         )
 
     parser.add_argument('-e_idx', '--end_idx', type=int,
-                        help='End index for selecting images. Default: 2K', default=1735,
+                        help='End index for selecting images. Default: 1735', default=1735,
                         )
 
     parser.add_argument('--idx_flag', type=int,

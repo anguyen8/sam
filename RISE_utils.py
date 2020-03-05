@@ -1,3 +1,8 @@
+##########################################################################################
+ ## Taken from here - https://github.com/eclique/RISE/blob/master/utils.py
+ # USED for IOU computation
+##########################################################################################
+
 import numpy as np
 from matplotlib import pyplot as plt
 import torch, skimage

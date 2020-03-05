@@ -72,7 +72,7 @@ def get_arguments():
                         )
 
     parser.add_argument('-e_idx', '--end_idx', type=int,
-                        help='End index for selecting images. Default: 2K', default=1735,
+                        help='End index for selecting images. Default: 1735', default=1735,
                         )
 
     parser.add_argument('--idx_flag', type=int,
@@ -287,10 +287,10 @@ if __name__ == '__main__':
 
     ############################
     model_names = []
-    # model_names.append('pytorch')
-    # model_names.append('googlenet')
-    # model_names.append('madry') #Robust_ResNet
-    model_names.append('madry_googlenet')  # Robust GoogleNet
+    model_names.append('pytorch') #ResNet
+    model_names.append('googlenet') #GoogleNet
+    model_names.append('madry') #ResNet_R
+    model_names.append('madry_googlenet')  #GoogleNet_R
 
     if not model_names:
         print('Please provide at least one model to analyze.\nExiting')

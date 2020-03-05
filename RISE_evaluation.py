@@ -1,3 +1,8 @@
+##########################################################################################
+ ## Taken from here - https://github.com/eclique/RISE/blob/master/evaluation.py
+ # with chnages in (correction in auc computation)
+ # Used for IOU computation
+##########################################################################################
 import torch
 from torch import nn
 import numpy as np

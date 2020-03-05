@@ -76,7 +76,7 @@ def get_arguments():
                         )
 
     parser.add_argument('-e_idx', '--end_idx', type=int,
-                        help='End index for selecting images. Default: 2K', default=1735,
+                        help='End index for selecting images. Default: 1735', default=1735,
                         )
 
     parser.add_argument('--idx_flag', type=int,
@@ -87,7 +87,7 @@ def get_arguments():
 
     parser.add_argument('-l_bp', '--lime_background_pixel',
                         help=f'Background pixel for lime to be used for absence of super-pixel.'
-                             f'Options - a number between (0-255), random, grey, mean of each superpixel/none (default)',
+                             f'Options - a number between (0-255), random, grey, none (mean of each superpixel) (default)',
                         )
 
     parser.add_argument('-l_sn', '--lime_superpixel_num', type=int,

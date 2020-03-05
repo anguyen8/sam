@@ -1,4 +1,8 @@
-# Path to dataset 
+##########################################################################################
+ ## Taken from here - https://github.com/MadryLab/robustness_applications
+##########################################################################################
+
+# Path to dataset
 DATA_PATH_DICT = {
     'CIFAR': '/path/tools/cifar',
     'RestrictedImageNet': '/path/tools/imagenet',
