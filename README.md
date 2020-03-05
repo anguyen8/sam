@@ -28,7 +28,7 @@ All the pre-trained models are available [here](https://drive.google.com/drive/u
 GoogLeNet-R can be trained using the script provided in [train.sh](train.sh). The user has to install the [robustness](https://github.com/MadryLab/robustness) repo and provide the input directory for the ImageNet training images under **data_path** argument. *(For the training purpose, please install the original [robustness](https://github.com/MadryLab/robustness) repo since we have made slight modifications to the one that is in our repo.)*
 
 These are the following modifations that we made to the **robustness** directory. 
-- By default, it returns a tuple *(logits, input)*. We chnaged it to output only *logits*.
+- By default, it returns a tuple *(logits, input)*. We changed it to output only *logits*.
 - By default, it requires a different input normalization as mentioned in the original repo. We have modified it to allow both the normal pytorch pre-processing and the one used originally. Please refer to the function **load_madry_model()**, in **./utils.py** for more details. 
 - If you are wrtiting your own explanation method or want to rewrite one of the methods in our repo for robust models, we would recommend setting **my_attacker=True** while calling **load_madry_model()**. This greatly simplifies the implementation. You should only set it to **False** if you want to adversarially perturb the image. 
 
