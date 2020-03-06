@@ -1,3 +1,9 @@
+################################################################################################################
+## To make our implementation fater, we generate all the noisy samples on gpu and directly pass the entire batch of samples thorugh the model.
+# So if you set a huge value, say 500, you might face memory issue.
+## If you want huge value, you would have to use dataparalle (CUDA_VISIBLE_DEVICES=0,1,2,3..) will work since parallel=True (by default)
+################################################################################################################
+
 from __future__ import print_function
 import torch
 from torch.autograd import Variable

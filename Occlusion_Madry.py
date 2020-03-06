@@ -1,3 +1,9 @@
+################################################################################################################
+## To make our implementation fater, we generate occlusiion masks in the very beginning.
+# So if you have a very small patch size (say 3), and a stride of 1, you might get memory error.
+## This was done to avoid any for loops
+################################################################################################################
+
 import torch
 import torch.nn.functional as F
 from torchvision.transforms import transforms

@@ -1,3 +1,10 @@
+################################################################################################################
+## IN our implementation, we geenrate LIME heatmaps for the 4 models used in our paper
+## i.e. we load all the four models in the memory in the very beginning.
+
+## Make sure you have enough memory since this one (only this) is hard-coded to run for all the 4 models.
+################################################################################################################
+
 from __future__ import absolute_import
 import warnings
 warnings.simplefilter('ignore')

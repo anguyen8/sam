@@ -1,3 +1,8 @@
+################################################################################################################
+## IG generates n number of samples along the straight line path between baseline image and the orig image.
+## In our implementation, we put all these samples on the cuda. So assign this value as per the gpu memory.
+## Default value is 50
+################################################################################################################
 from __future__ import print_function
 import torch
 from torch.autograd import Variable
