@@ -6,6 +6,7 @@ bleach==3.1.0
 bs4==0.0.1
 certifi==2019.6.16
 chardet==3.0.4
+cox==0.1.post2
 cycler==0.10.0
 decorator==4.4.0
 defusedxml==0.6.0
