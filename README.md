@@ -8,7 +8,7 @@ Bansal*, Agarwal*, Nguyen* (2020). _SAM: The sensitivity of attribution methods 
 
     @inproceedings{bansal2020sam,
         title={SAM: The Sensitivity of Attribution Methods to Hyperparameters},
-        author={Nguyen, Anh and Yosinski, Jason and Clune, Jeff},
+        author={Naman Bansal, Chirag Agarwal, Anh Nguyen},
         booktitle={Proceedings of the IEEE conference on computer vision and pattern recognition},
         pages={},
         year={2020}
