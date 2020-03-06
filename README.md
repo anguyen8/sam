@@ -29,13 +29,13 @@ GoogLeNet-R can be trained using the script provided in [train.sh](train.sh). Th
 
 **Note:** Before running the [train.sh](train.sh) scripts, replace the files under `robustness/imagenet_models/` (e.g. `~/anaconda3/envs/your_env/lib/python3.6/site-packages/robustness/imagenet_models/`) in the robustness library folder with the files in the folder [madry_files](./madry_files/).
 
-These are the following modifations that we made to the **robustness** directory. 
-- By default, it returns a tuple *(logits, input)*. We changed it to output only *logits*.
-- By default, it requires a different input normalization as mentioned in the original repo. We have modified it to allow both the normal pytorch pre-processing and the one used originally. Please refer to the function **load_madry_model()**, in **./utils.py** for more details. 
-- If you are wrtiting your own explanation method or want to rewrite one of the methods in our repo for robust models, we would recommend setting **my_attacker=True** while calling **load_madry_model()**. This greatly simplifies the implementation. You should only set it to **False** if you want to adversarially perturb the image. 
+These are the following modifations that we made to the **robustness** directory (now `./naman_robustness`). 
+- By default, the robust model returns a tuple *(logits, input)*. We changed it to output only *logits*.
+- By default, it requires a different input normalization as mentioned in the original repo. We have modified it to allow both the normal pytorch pre-processing and the one used originally. Please refer to the function `load_madry_model()`, in `./utils.py` for more details. 
+- If you are wrtiting your own explanation method or want to rewrite one of the methods in our repo for robust models, we would recommend setting `my_attacker=True` while calling `load_madry_model()`. This greatly simplifies the implementation. You should only set it to **False** if you want to adversarially perturb the image. 
 
 ## 2. Dataset
-We ran our experiments on a 1735 images from the original ImageNet validation dataset as described in the paper. We have provided a text file in **./img_file_names/paper_images_list.txt**. So if you run any explanation method with input directory being a path to the validation set, our implementation will only produce heatmaps on the 1735 images mentioned in the list instead of running on all the 50K images. 
+We ran our experiments on a 1735 images from the original ImageNet validation dataset as described in the paper. We have provided a text file in `./img_file_names/paper_images_list.txt`. So if you run any explanation method with input directory being a path to the validation set, our implementation will only produce heatmaps on the 1735 images mentioned in the list instead of running on all the 50K images. 
 
 ## 3. Usage
 - The shell script for generating Figure 1 of our paper is in [teaser.sh](teaser.sh). Given an [image](./Images/teaser/ILSVRC2012_val_00002056.JPEG), the script runs SmoothGrad, Sliding-Patch, LIME, and Meaningful Perturbation algorithm for their different hyperparameters and produces a montage image of their respective [attribution maps](./results/formal_teaser.jpg)
