@@ -26,7 +26,7 @@ All of our experiments were conducted on two groups of classifiers: (a) [GoogLeN
 
 All the pre-trained models are available [here](https://drive.google.com/drive/u/2/folders/1KdJ0aK0rPjmowS8Swmzxf8hX6gU5gG2U). The user has to download the weight files and store them under the **./models/** directory.
 GoogLeNet-R can be trained using the script provided in [train.sh](train.sh). The user has to install the [robustness](https://github.com/MadryLab/robustness) repo and provide the input directory for the ImageNet training images under **data_path** argument. 
-**Note:** Before running the [train.sh](train.sh) scripts, replace the files under *robustness/imagenet_models/* in the robustness library folder with the files in the folder [madry_files](./madry_files/).
+**Note:** Before running the [train.sh](train.sh) scripts, replace the files under *robustness/imagenet_models/* (e.g. ~/anaconda3/envs/your_env/lib/python3.6/site-packages/robustness/imagenet_models/) in the robustness library folder with the files in the folder [madry_files](./madry_files/).
 
 These are the following modifations that we made to the **robustness** directory. 
 - By default, it returns a tuple *(logits, input)*. We changed it to output only *logits*.
