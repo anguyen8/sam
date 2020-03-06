@@ -1,16 +1,18 @@
 ## SAM: The Sensitivity of Attribution Methods to Hyperparameters
 
-This repository contains source code necessary to reproduce some of the main results in [the paper]():
+This repository contains source code necessary to reproduce some of the main results in our paper:
+
+Bansal*, Agarwal*, Nguyen* (2020). _SAM: The sensitivity of attribution methods to hyperparameters_. Computer Vision and Pattern Recognition (CVPR). [paper]() | [code](https://github.com/anguyen8/sam)
 
 **If you use this software, please consider citing:**
-    
-    @misc{bansal2020sam,
-    title={SAM: The Sensitivity of Attribution Methods to Hyperparameters},
-    author={Naman Bansal and Chirag Agarwal and Anh Nguyen},
-    year={2020},
-    eprint={},
-    archivePrefix={CVPR},
-    primaryClass={cs.LG}
+
+    @inproceedings{bansal2020sam,
+        title={SAM: The Sensitivity of Attribution Methods to Hyperparameters},
+        author={Nguyen, Anh and Yosinski, Jason and Clune, Jeff},
+        booktitle={Proceedings of the IEEE conference on computer vision and pattern recognition},
+        pages={},
+        year={2020}
+    }
     
 ## 1. Setup
 
@@ -40,7 +42,7 @@ We ran our experiments on a 1735 images from the original ImageNet validation da
 ## 3. Usage
 - The shell script for generating Figure 1 of our paper is in [teaser.sh](teaser.sh). Given an [image](./Images/teaser/ILSVRC2012_val_00002056.JPEG), the script runs SmoothGrad, Sliding-Patch, LIME, and Meaningful Perturbation algorithm for their different hyperparameters and produces a montage image of their respective [attribution maps](./results/formal_teaser.jpg)
 
-### Examples
+### 3.1 Script 1
 Generating the attribution map for the class "matchstick".
 Running `source teaser.sh` produces this result:
 
@@ -51,7 +53,7 @@ Running `source teaser.sh` produces this result:
 
 - The shell script for generating Figure 2 of our paper is in [gradient.sh](gradient.sh). Given an [image](./Images/grad/ILSVRC2012_val_00020735.JPEG), the script generates the [gradient](./results/formal_gradient.jpg) of four models (GoogLeNet, GoogLeNet-R, ResNet-50, and ResNet-50-R) for a clean and noisy image respectively.
 
-### Examples
+### 3.2 Script 2
 Generating the attribution map for the class "goblet".
 Running `source gradient.sh` produces this result:
 
@@ -63,7 +65,7 @@ Running `source gradient.sh` produces this result:
 - The shell script for evaluating the sensitivity of different explanation methods is in [sensitivity.sh](sensitivity.sh). The sensitivity is calculated for five sample images in [this](./Images/images_sensitivity/) folder across all four models (GoogLeNet, GoogLeNet-R, ResNet-50, and ResNet-50-R).
 Running  `source sensitivity.sh` runs the sensitivity test on Vanilla Gradient (VG), Input x Gradient (IG), Sliding-Patch (SP), Meaningful Perturbation (MP), LIME, and Smooth Gradient (SG) explanation methods on their respective hyperparameters. Given the list of images in the folder, the script calculates the average accuracy scores across all the images using the evaluation metrics described in the paper.
 
-### Examples
+### 3.3 Script 3
 Running 
 ```
 for patch in {52,53,54}
@@ -78,8 +80,8 @@ from the [sensitivity.sh](sensitivity.sh) would produce the sensitivity results 
     <img src="./formal_sensitivity_occlusion.jpg" height=300px width=300px>
 </p>
 
-## 3. Licenses
+## 4. Licenses
 Note that the code in this repository is licensed under MIT License, but, the pre-trained condition models used by the code have their own licenses. Please carefully check them before use. 
 
-## 4. Questions?
+## 5. Questions?
 If you have questions/suggestions, please feel free to email us or create github issues.
