@@ -2,7 +2,7 @@
 
 This repository contains source code necessary to reproduce some of the main results in our paper:
 
-Bansal*, Agarwal*, Nguyen* (2020). _SAM: The sensitivity of attribution methods to hyperparameters_. Computer Vision and Pattern Recognition (CVPR). [paper]() | [code](https://github.com/anguyen8/sam)
+Bansal*, Agarwal*, Nguyen* (2020). _SAM: The sensitivity of attribution methods to hyperparameters_. Computer Vision and Pattern Recognition (CVPR). **Oral** presentation. [paper](http://anhnguyen.me/project/sam/) | [code](https://github.com/anguyen8/sam)
 
 **If you use this software, please consider citing:**
 
