@@ -58,7 +58,7 @@ Generating the attribution map for the class "goblet".
 Running `source gradient.sh` produces this result:
 
 <p align="center">
-    <img src="./results/formal_gradient.jpg" height=200px width=300px>
+    <img src="./results/formal_gradient.jpg" width=500px>
 </p>
 <p align="center"><i> The clean image followed by the gradient attribution maps generated using (left-->right) GoogLeNet, GoogLeNet-R, ResNet-50, and ResNet-50-R models. We show the sensitivity of the gradients on adding a small Gaussian noise to the clean image for all the models respectively.</i></p>
 
